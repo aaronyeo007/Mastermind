@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="left-container">
+        <button type="submit" id="start">CLICK TO PLAY</button>
+        <br>
+        <p>Objective: To break the secret code</p>
+        <br>
+        <p>How to play</p>
+        <p>1. The code is a four color code containing the colored buttons displayed. <br><br>
+        2. The code may contain multiples of the same color. <br><br>
+        3. Try to guess the correct code (color and order) by clicking on the colored buttons. <br><br>
+        4. Your guess will then be compared to the code. For every correct color that is in the correct position, a red peg will be displayed. <br><br>
+        5. However, for every correct color that is in the wrong position, a white peg will be displayed. <br><br>
+        6. Red peg takes precedence over the white peg. <br>
+        i.e. if the secret code contains 1 green, and the code breaker guessed 2 green, then the code maker gives 1 red hint peg
+         if one of the green is in the correct position, so the code maker has used red peg in preference to white peg.</p>
+        <h2 class="result">RESULT</h2>
+        </div>
+    <div class="middle-container">
+        <h1>MASTERMIND</h1>
+        <div class="mastermind-board">
+            <div class="secret-code-row"></div>
+        </div>
+    </div>
+    <div class="right-container">
+        <div class="color-board">
+            <div class="color-board-peg" id="black"></div>
+            <div class="color-board-peg" id="blue"></div>
+            <div class="color-board-peg" id="green"></div>
+            <div class="color-board-peg" id="red"></div>
+            <div class="color-board-peg" id="yellow"></div>
+            <div class="color-board-peg" id="white"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+body {
+    background-color: #A9AF7E;
+    display: flex;
+}
+
+.middle-container > H1{
+    text-align: center;
+}
+
+.left-container {
+    width: 200px;
+    height: 200px;
+    vertical-align: top;
+    flex-grow: 1;
+    margin-top: 30px;
+}
+
+.middle-container {
+    width: 310px;
+    flex-grow: 2;
+}
+
+.right-container {
+    width: 200px;
+    height: 350px;
+    flex-grow: 1;
+    margin-top: 250px;
+}
+
+#start {
+    font-size: x-large;
+}
+
+.mastermind-board {
+    width: 300px;
+    height: 658px;
+    margin: auto;
+    border-radius: 10px;
+    background: #EFF5F5;
+    border: 1px solid #497174;
+}
+
+.secret-code-row {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 42px;
+    width: 190px;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 0 0 5px;
+}
+
+.secret-code {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: grey;
+    display: inline-block;
+    justify-content: space-between;
+    margin: 0px 2px 0px 2px;
+}
+
+.mastermind-row {
+    border: 1px inset greenyellow;
+    border-radius: 5px;
+    height: 42px;
+    width: 278px;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 0 0 5px;
+}
+
+.hint-container {
+    width: 80px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    margin-left: 10px;
+}
+
+.peg {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: grey;
+    display: inline-block;
+    margin: 0px 2px 0px 2px;
+}
+
+.color-board-peg {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background-color: grey;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.hint-peg {
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+    background-color: grey;
+    display: inline-block;
+    margin: 5px 5px 0px 2px;
+}
+
+.color-board {
+    width: 60px;
+    height: 320px;
+    border: 1px solid black;
+    border-radius: 4px;
+    margin: auto;
+}
+
+p {
+    font-size: large;
+}
