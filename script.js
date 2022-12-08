@@ -243,7 +243,7 @@ $(() => {
     };
 
     $buttonStart.on('click', (event) => {
-        $('#start').css('pointer-events', 'none');
+        $('#start').css('pointer-events', 'none').text('Game In Progress');
         render();
         if (startPlay) {
             selectPeg();
