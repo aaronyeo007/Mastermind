@@ -9,6 +9,7 @@ let redHint = 0; // Declare variable for the number of red hints
 let whiteHint = 0; // Declare variable for the number of white hints
 let hintPegCounter = 0; // Declare variable for coloring of hint pegs
 let restartCounter = 0; // Declare variable for restarting game
+let breakerCodeColorCounter = 1;
 
 $(() => {
     
@@ -25,10 +26,9 @@ $(() => {
     };
     
     const selectPeg = () => { // Declare function when code breaker selects peg to be colored
-        let breakerCodeColorCounter = 1;
         $('.color-board-peg').css('pointer-events', 'auto');
         $('.color-board-peg').on('click', (event) => {
-            console.log('event.currentTarget', event.currentTarget);
+            console.log('event.currentTarget.id', event.currentTarget.id);
             event.stopPropagation();
             let colorPegClicked = event.currentTarget.id;
             breakerCode.push(colorPegClicked);
@@ -217,7 +217,7 @@ $(() => {
     for (let i = 1; i <= 10; i++) { // For loop to generate rows for code breaker and hints
         const $divRow = $('<div>');
         const $divHint = $('<div>');
-
+        
         $('.mastermind-board').append($divRow);
         $divRow.addClass(`mastermind-row ${i}`);
         for (let j = 1; j <= 4; j++) {
@@ -255,4 +255,14 @@ $(() => {
             restartCounter = 0;
         }
     });
+
+    $('.reset').on('click', (event) => {
+        if (startPlay && $('.result').text !== "SOLVED!" && breakerCodeColorCounter >= 1) {
+            breakerCode = [];
+            for (i = 1; i <= breakerCodeColorCounter; i++) {
+                $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
+            };
+            breakerCodeColorCounter = 1;
+        }
+    })
 });

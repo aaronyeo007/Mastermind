@@ -9,10 +9,8 @@ body {
 
 .left-container {
     width: 200px;
-    height: 200px;
     vertical-align: top;
     flex-grow: 1;
-    margin-top: 30px;
 }
 
 .middle-container {
@@ -22,7 +20,6 @@ body {
 
 .right-container {
     width: 200px;
-    height: 350px;
     flex-grow: 1;
     margin-top: 250px;
 }
@@ -112,10 +109,41 @@ body {
     width: 60px;
     height: 320px;
     border: 1px solid black;
+    background: grey;
     border-radius: 4px;
     margin: auto;
 }
 
 p {
     font-size: large;
+}
+
+.submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.submit {
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background: green;
+    font-weight: bolder;
+}
+
+.reset {
+    margin: auto;
+    text-align: center;
+    vertical-align: middle;
+    width: 80px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid black;
+    background: red;
+    font-weight: bolder;
 }
