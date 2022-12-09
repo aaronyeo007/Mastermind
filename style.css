@@ -26,6 +26,7 @@ body {
 
 #start {
     font-size: x-large;
+    cursor: pointer;
 }
 
 .mastermind-board {
@@ -129,11 +130,13 @@ p {
     text-align: center;
     vertical-align: middle;
     width: 80px;
-    height: 40px;
+    height: 30px;
     border-radius: 20px;
     border: 1px solid black;
     background: green;
     font-weight: bolder;
+    cursor: pointer;
+    padding: 10px 0 0 0;
 }
 
 .reset {
@@ -141,9 +144,11 @@ p {
     text-align: center;
     vertical-align: middle;
     width: 80px;
-    height: 40px;
+    height: 30px;
     border-radius: 20px;
     border: 1px solid black;
     background: red;
     font-weight: bolder;
+    cursor: pointer;
+    padding: 10px 0 0 0;
 }
