@@ -68,7 +68,6 @@ const showSecretCode = () => {
 
 const checkResult = () => {
     if (secretCode[0] === breakerCode[0] && secretCode[1] === breakerCode[1] && secretCode[2] === breakerCode[2] && secretCode[3] === breakerCode[3]) {
-        console.log('Solved!');
         $('.result').text('SOLVED!').css('color', 'green');
         for (let i = 0; i < secretCode.length; i++) {
             $(`.hint-peg#r${checkResultCounter}p${i+1}`).css('background-color', 'red');
@@ -86,12 +85,10 @@ const checkResult = () => {
             hintPegCounter++;
         }
         if (breakerCodeRowCounter > 1) {
-            checkResultCounter % 2 === 1 ? $('.result').text('TRY AGAIN!').css('color', 'red') : $('.result').text('TRY AGAIN!').css('color', 'brown');
-            console.log('Try again!');
+            checkResultCounter % 2 === 1 ? $('.result').text('TRY AGAIN!').css('color', 'red') : $('.result').text('TRY AGAIN!').css('color', `#FFCAC8`);
             nextRow();
         } else {
             $('.result').text('COMPUTER WINS!').css('color', 'blue');
-            console.log('Computer wins!');
             showSecretCode();
             restart();
         };
@@ -144,6 +141,7 @@ $('#start').on('click', () => {
     startPlay = true;
     breakerCodeRowCounter = 10; // Bug
     render();
+    $('.result').text('');
 });
 
 $('.color-board-peg').on('click', (event) => {
