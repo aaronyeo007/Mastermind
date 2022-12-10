@@ -8,6 +8,7 @@ let redHint = 0; // Declare variable for the number of red hints
 let whiteHint = 0; // Declare variable for the number of white hints
 let hintPegCounter = 0; // Declare variable for coloring of hint pegs
 let startPlay = false;
+let solved = false;
 
 // For loop to generate random colors of the secret code
 for (let i = 1; i <= 4; i++) {
@@ -20,13 +21,14 @@ for (let i = 1; i <= 4; i++) {
 const render = () => {
     $('#start').text('Game in progress');
     $('.secret-code').css('background', 'grey');
-    for (let i = 0; secretCode.length < 5; i++) {
+    for (let i = 0; secretCode.length < 4; i++) {
         let secretCodeColor = Math.floor(Math.random() * colorsArray.length);
         secretCode.push(colorsArray[secretCodeColor]);
         i === 3 ? console.log('secretCode ', secretCode) : 0;
     };
     $('.peg').css('background', 'grey');
     $('.hint-peg').css('background', 'grey');
+    solved = false;
 };
 
 // For loop to generate color pegs for selection
@@ -69,6 +71,7 @@ const showSecretCode = () => {
 const checkResult = () => {
     if (secretCode[0] === breakerCode[0] && secretCode[1] === breakerCode[1] && secretCode[2] === breakerCode[2] && secretCode[3] === breakerCode[3]) {
         $('.result').text('SOLVED!').css('color', 'green');
+        solved = true;
         for (let i = 0; i < secretCode.length; i++) {
             $(`.hint-peg#r${checkResultCounter}p${i+1}`).css('background-color', 'red');
         };
@@ -84,11 +87,12 @@ const checkResult = () => {
             $(`.hint-peg#r${checkResultCounter}p${hintPegCounter+1}`).css('background-color', 'white');
             hintPegCounter++;
         }
-        if (breakerCodeRowCounter > 1) {
+        if (breakerCodeRowCounter >= 1) {
             checkResultCounter % 2 === 1 ? $('.result').text('TRY AGAIN!').css('color', 'red') : $('.result').text('TRY AGAIN!').css('color', `#FFCAC8`);
             nextRow();
         } else {
             $('.result').text('COMPUTER WINS!').css('color', 'blue');
+            solved = true;
             showSecretCode();
             restart();
         };
@@ -105,6 +109,7 @@ const restart = () => {
     checkResultCounter = 10;
     startPlay = false;
     breakerCodeColorCounter = 1;
+    breakerCodeRowCounter = 10;
 }
 
 // Function to count the number of correct red hints and white hints
@@ -121,6 +126,7 @@ const hint = () => {
         }
     };
     // For loop to check for number of white hints
+    console.log("secretCodeHint", secretCodeHint);
     for (let i = 0; i < remainingCode.length; i++) {
         if (secretCodeHint.includes(remainingCode[i])) {
             whiteHint++;
@@ -139,7 +145,6 @@ const nextRow = () => {
 
 $('#start').on('click', () => {
     startPlay = true;
-    breakerCodeRowCounter = 10; // Bug
     render();
     $('.result').text('');
 });
@@ -147,43 +152,7 @@ $('#start').on('click', () => {
 $('.color-board-peg').on('click', (event) => {
     let colorPegClicked = event.currentTarget.id;
     if (startPlay) {
-        if (breakerCodeRowCounter === 10 && breakerCode.length < 4) { // if-else statement to indicate color selected on the breaker rows
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 9 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 8 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 7 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 6 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 5 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 4 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 3 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 2 && breakerCode.length < 4) {
-            breakerCode.push(colorPegClicked);
-            $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
-            breakerCodeColorCounter++;
-        } else if (breakerCodeRowCounter === 1 && breakerCode.length < 4) {
+        if (breakerCodeRowCounter >= 1 && breakerCode.length < 4) { // if-else statement to indicate color selected on the breaker rows
             breakerCode.push(colorPegClicked);
             $(`#r${breakerCodeRowCounter}p${breakerCodeColorCounter}`).css('background', colorPegClicked);
             breakerCodeColorCounter++;
@@ -192,107 +161,19 @@ $('.color-board-peg').on('click', (event) => {
 });
 
 $('.submit').on('click', () => {
-    if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 10) {
-        checkResult();
-        breakerCodeRowCounter = 9;
+    if (!solved && breakerCode.length === 4) {
+        breakerCodeRowCounter--;
         breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 9) {
-        checkResult();
-        breakerCodeRowCounter = 8;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 8) {
-        checkResult();
-        breakerCodeRowCounter = 7;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 7) {
-        checkResult();
-        breakerCodeRowCounter = 6;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 6) {
-        checkResult();
-        breakerCodeRowCounter = 5;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 5) {
-        checkResult();
-        breakerCodeRowCounter = 4;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 4) {
-        checkResult();
-        breakerCodeRowCounter = 3;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 3) {
-        checkResult();
-        breakerCodeRowCounter = 2;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 2) {
-        checkResult();
-        breakerCodeRowCounter = 1;
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCode.length === 4 && breakerCodeRowCounter === 1) {
         checkResult();
     }
 });
 
 $('.reset').on('click', () => {
-    if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 10) {
+    if (!solved) {
         breakerCode = [];
         for (i = 1; i <= breakerCodeColorCounter; i++) {
             $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
         };
         breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 9) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 8) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 7) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 6) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 5) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 4) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 3) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 2) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    } else if ($('.result').text !== "SOLVED!" && breakerCodeRowCounter === 1) {
-        breakerCode = [];
-        for (i = 1; i <= breakerCodeColorCounter; i++) {
-            $(`#r${breakerCodeRowCounter}p${i}`).css('background', 'grey');
-        };
-        breakerCodeColorCounter = 1;
-    };
+    }
 });
