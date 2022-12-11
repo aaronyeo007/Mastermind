@@ -28,17 +28,12 @@ Reason for choosing this game
 Game Components
 1. Game Initialization
 2. Playing the Game
-3. Keeping Score
-4. Announcing the Winner
+3. Announcing the Result
 
 Technologies Being Used:
 HTML and CSS for the website and JavaScript during the game.
 
 Notes:
-1. For MVP, hint pegs is not a must.
-2. End of week 2, hint pegs to be featured.
-3. Some instructions will be required on how to select colors onto the board.
-4. Helper text to help selection of colors into the empty pegs.
-5. Further feature
+1. Further feature
   a. Dragging and dropping.
   b. Change of the mouse cursor when color is selected.
