@@ -24,7 +24,6 @@ const render = () => {
     for (let i = 0; secretCode.length < 4; i++) {
         let secretCodeColor = Math.floor(Math.random() * colorsArray.length);
         secretCode.push(colorsArray[secretCodeColor]);
-        i === 3 ? console.log('secretCode ', secretCode) : 0;
     };
     $('.peg').css('background', 'grey');
     $('.hint-peg').css('background', 'grey');
@@ -126,7 +125,6 @@ const hint = () => {
         }
     };
     // For loop to check for number of white hints
-    console.log("secretCodeHint", secretCodeHint);
     for (let i = 0; i < remainingCode.length; i++) {
         if (secretCodeHint.includes(remainingCode[i])) {
             whiteHint++;
