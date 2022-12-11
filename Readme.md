@@ -33,5 +33,10 @@ Game Components
 Technologies Being Used:
 HTML and CSS for the website and JavaScript during the game.
 
-Notes:
+To-dos:
 1. Further features to consider - dragging and dropping.
+2. Consider further improving the algorithm used to compare secret codes against the breaker codes.
+
+Challenges:
+1. Spent quite a fair bit of time narrowing down the bugs due to incorrect algorithms.
+2. Earlier versions of the game design were lengthy and repetitive and lack a tier-down approach to the game flow.
