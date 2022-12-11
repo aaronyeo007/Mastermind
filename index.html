@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastermind</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="top-container">
+        <h1>MASTERMIND</h1>
+        <div class="mastermind-board">
+            <div class="secret-code-row"></div>
+        </div>
+    </div>
+    <div class="middle-container">
+        <div class="color-board">
+            <div class="color-board-peg" id="black"></div>
+            <div class="color-board-peg" id="blue"></div>
+            <div class="color-board-peg" id="green"></div>
+            <div class="color-board-peg" id="red"></div>
+            <div class="color-board-peg" id="yellow"></div>
+            <div class="color-board-peg" id="white"></div>
+        </div>
+        <div class="submit-container">
+            <button type="submit" id="start">CLICK TO PLAY</button>
+            <div class="reset">Delete</div>
+            <div class="submit">Submit</div>
+        </div>
+        <h2 class="result">RESULT</h2>
+    </div>
+    <div class="bottom-container">
+        <p><u>Rules</u></p>
+        <p>1. Mastermind is a game of four secret color codes containing the colored buttons displayed. <br><br>
+            2. Each 4 secret color code may contain pegs of the same color. <br><br>
+            3. Guess the correct code (color and order) by clicking on the colored buttons and hit submit. <br><br>
+            4. Each guess will be compared with the code. For every correct color that is in the correct position, a red peg will be displayed. <br><br>
+            5. However, for every correct color that is in the wrong position, a white peg will be displayed. <br><br>
+            6. Red peg takes precedence over the white peg. <br>
+            i.e. if the secret code contains 1 green, and the code breaker guessed 2 green with one of the green in the correct position, red peg will be displayed
+            in preference to white peg.</p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
