@@ -34,6 +34,4 @@ Technologies Being Used:
 HTML and CSS for the website and JavaScript during the game.
 
 Notes:
-1. Further feature
-a. Dragging and dropping.
-b. Change of the mouse cursor when color is selected.
+1. Further features to consider - dragging and dropping.
