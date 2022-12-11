@@ -35,5 +35,5 @@ HTML and CSS for the website and JavaScript during the game.
 
 Notes:
 1. Further feature
-  a. Dragging and dropping.
-  b. Change of the mouse cursor when color is selected.
+a. Dragging and dropping.
+b. Change of the mouse cursor when color is selected.
